@@ -1,6 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Base application theme. -->
     <style name="Theme.Longitodo" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <!--   darker variant for the status bar and contextual app bars -->
@@ -9,4 +8,7 @@
         <item name="colorAccent">@color/accent</item>
     </style>
 
+    <style name="Theme.Longitodo.Detail">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 </resources>
