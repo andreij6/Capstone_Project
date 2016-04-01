@@ -1,3 +1,3 @@
-# Capstone_Project
+# Udacity Android Nanodegree Capstone Project
 
-Udacity CapStone Project
+Longitodo
