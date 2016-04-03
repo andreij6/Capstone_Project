@@ -52,7 +52,15 @@
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:paddingBottom="10dp"
-                android:scrollbarStyle="outsideOverlay"/>
+                android:scrollbarStyle="outsideOverlay"
+                android:visibility="@{vm.listVisibility()}"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No Items In List"
+                android:visibility="@{vm.emptyListDisplay()}"
+                android:gravity="center_horizontal"/>
 
         </RelativeLayout>
 
