@@ -4,9 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
+import com.creativejones.andre.longitodo.handler.MapHelper;
+
 public class MainActivityVM {
 
     Context mContext;
+    MapHelper mMapHelper;
 
     /**
      * <p>
@@ -20,6 +23,8 @@ public class MainActivityVM {
     public MainActivityVM build(Context context, Bundle savedInstanceState) {
         mContext = context;
 
+        mMapHelper = new MapHelper();
+
         recreateViewModel(savedInstanceState);
 
         return this;
@@ -27,12 +32,12 @@ public class MainActivityVM {
 
     @SuppressWarnings("unused")
     public int listVisibility(){
-        return false ? View.VISIBLE : View.GONE;
+        return true ? View.VISIBLE : View.GONE;
     }
 
     @SuppressWarnings("unused")
     public int emptyListDisplay(){
-        return true ? View.VISIBLE : View.GONE;
+        return false ? View.VISIBLE : View.GONE;
     }
 
     public void saveInstanceState(Bundle outState) {
@@ -42,6 +47,10 @@ public class MainActivityVM {
     //region Private Helpers
     private void recreateViewModel(Bundle from) {
         if(from == null) return;
+    }
+
+    public MapHelper getMapHelper() {
+        return mMapHelper;
     }
 
 

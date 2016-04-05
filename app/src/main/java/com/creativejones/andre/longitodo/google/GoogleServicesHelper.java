@@ -23,13 +23,13 @@ public class GoogleServicesHelper implements GoogleApiClient.ConnectionCallbacks
         mListener = listener;
         mActivity = (Activity)listener;
 
-        mClient = new GoogleApiClient.Builder(mActivity)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Plus.API, Plus.PlusOptions.builder()
-                        .setServerClientId("798656238650-r40fl6esh1uj21niehckfn85jtg6cgib.apps.googleusercontent.com")
-                        .build())
-                .build();
+       mClient = new GoogleApiClient.Builder(mActivity)
+               .addConnectionCallbacks(this)
+               .addOnConnectionFailedListener(this)
+               .addApi(Plus.API, Plus.PlusOptions.builder()
+                       .setServerClientId("798656238650-r40fl6esh1uj21niehckfn85jtg6cgib.apps.googleusercontent.com")
+                       .build())
+               .build();
     }
 
     public void connect(){

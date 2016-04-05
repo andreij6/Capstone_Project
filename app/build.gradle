@@ -12,9 +12,14 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            resValue "string", "google_maps_api_key", "\"AIzaSyCzd4oS4qY610K50beQuGnPpRfwkpeheRc\""
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "string", "google_maps_api_key", "[YOUR DEV KEY]"
+
         }
     }
 
@@ -28,7 +33,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
+    compile 'com.google.android.gms:play-services-maps:8.4.0'
     compile 'com.google.android.gms:play-services-plus:8.4.0'
-
-
 }
