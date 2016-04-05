@@ -1,18 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/task_item_height"
+                android:paddingTop="@dimen/task_item_padding"
+                android:paddingBottom="@dimen/task_item_padding"
+                style="@style/task_item_container">
 
     <View
-        android:layout_width="5dp"
+        android:id="@+id/recycler_task_priority"
+        android:layout_width="@dimen/task_item_priority_width"
         android:layout_height="match_parent"
-        android:background="@color/accent"/>
+        android:layout_alignBottom="@+id/recycler_task_category_textview"
+        android:layout_alignParentStart="true"
+        android:background="?colorAccent"/>
+
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/recycler_task_name_textview"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Andre"
-        android:gravity="center_horizontal"
-        android:id="@+id/textView"/>
-</LinearLayout>
+        android:paddingLeft="@dimen/task_item_text_paddingleft"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Go to Wal-Mart"
+        style="@style/task_item_name"
+        android:layout_toEndOf="@+id/recycler_task_priority"
+        android:layout_toStartOf="@+id/recycler_task_location_icon"/>
+
+    <TextView
+        android:id="@+id/recycler_task_category_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recycler_task_name_textview"
+        android:layout_toEndOf="@+id/recycler_task_priority"
+        android:layout_toStartOf="@+id/recycler_task_location_icon"
+        android:paddingLeft="@dimen/task_item_text_paddingleft"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Groceries"
+        style="@style/task_item_category"/>
+
+    <CheckBox
+        android:id="@+id/recycler_task_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/task_item_text_marginRight"
+        android:layout_marginRight="@dimen/task_item_text_marginRight"/>
+
+    <ImageView
+        android:id="@+id/recycler_task_location_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="25dp"
+        android:tint="@color/red"
+        android:layout_toStartOf="@+id/recycler_task_checkbox"
+        android:src="@drawable/ic_map_marker_grey600_24dp"/>
+
+</RelativeLayout>
+
+

@@ -9,4 +9,29 @@
         <item name="colorAccent">@color/accent</item>
     </style>
 
+    <style name="task_item_name">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="task_item_category">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textColor">@color/lightGrayTextColor</item>
+    </style>
+
+    <style name="task_item_container">
+        <item name="android:background">@color/darkGrayBackground</item>
+    </style>
+
+    <style name="task_date_header_container">
+        <item name="android:background"> @color/darkGrayBackground</item>
+    </style>
+
+    <style name="task_date_header_text">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginStart">15dp</item>
+    </style>
+
 </resources>
