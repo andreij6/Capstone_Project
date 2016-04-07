@@ -1,6 +1,7 @@
 package com.creativejones.andre.longitodo.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v4.content.ContextCompat;
@@ -12,7 +13,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.creativejones.andre.longitodo.R;
 import com.creativejones.andre.longitodo.models.TaskItem;
@@ -25,9 +25,8 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.BaseHolder> 
     private static final int DAY_OF_WEEK_VIEW = 333;
     private static final int TASK_ITEM_VIEW = 444;
 
-
-    List<TaskItem> TaskList;
-    Context _Context;
+    static List<TaskItem> TaskList;
+    static Context _Context;
 
     public TasksAdapter(Context context, List<TaskItem> items){
         _Context = context;
@@ -36,14 +35,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.BaseHolder> 
 
     @Override
     public BaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        if(viewType == DAY_OF_WEEK_VIEW){
-            View dayView = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_task_day_item, parent, false);
-            return new DayOfWeekViewHolder(dayView);
-        } else {
-            View taskView = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_task_list_item, parent, false);
-            return new TaskItemViewHolder(taskView);
-        }
+        return viewType == DAY_OF_WEEK_VIEW ? DayOfWeekViewHolder.newInstance(parent) : TaskItemViewHolder.newInstance(parent);
     }
 
     @Override
@@ -61,27 +53,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.BaseHolder> 
         return position == 0 ? DAY_OF_WEEK_VIEW : TASK_ITEM_VIEW;
     }
 
-    public class DayOfWeekViewHolder extends BaseHolder {
-
-        TextView DateTextView;
-
-        public DayOfWeekViewHolder(View itemView) {
-            super(itemView);
-        }
-
-        @Override
-        public void bindView(int position) {
-            DateTextView.setText("Monday");
-        }
-
-        @Override
-        protected void ViewReferences() {
-            DateTextView = (TextView) itemView.findViewById(R.id.task_date_TV);
-        }
-
-    }
-
-    public class TaskItemViewHolder extends BaseHolder {
+    public static class TaskItemViewHolder extends BaseHolder {
 
         View Priority;
         TextView Name, Category;
@@ -108,32 +80,28 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.BaseHolder> 
             viewModel = TaskList.get(0).toViewModel();
 
             Priority.setBackgroundColor(ContextCompat.getColor(_Context, viewModel.getPriority()));
-            Name.setText(viewModel.getName());
-            Category.setText(viewModel.getCategory());
 
+            Name.setText(viewModel.getName());
             Name.setOnClickListener(goToTaskDetail());
+
+            Category.setText(viewModel.getCategory());
             Category.setOnClickListener(goToTaskDetail());
 
+            LocationIcon.setOnClickListener(goToTaskDetail());
             LocationIcon.setVisibility(viewModel.hasLocation() ? View.VISIBLE : View.GONE);
 
             TaskCheckBox.setChecked(viewModel.isCompleted());
+            TaskCheckBox.setOnCheckedChangeListener(taskCheckedListener());
+        }
 
-            TaskCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        private CompoundButton.OnCheckedChangeListener taskCheckedListener(){
+            return new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
+                    if (isChecked)
                         viewModel.markAsComplete();
-                    }
                 }
-            });
-
-
-            LocationIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(_Context, "Zoom to location", Toast.LENGTH_LONG).show();
-                }
-            });
+            };
         }
 
         private View.OnClickListener goToTaskDetail(){
@@ -141,14 +109,46 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.BaseHolder> 
 
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(_Context, "Go To Detail View", Toast.LENGTH_LONG).show();
+
+                    //make viewModel Parcelable
+                    Intent intent = new Intent(_Context, TaskDetailActivity.class).putExtra(TaskDetailActivity.TASK_DETAIL_EXTRA, 2);
+
+                    _Context.startActivity(intent);
                 }
             };
         }
 
+        public static BaseHolder newInstance(ViewGroup parent) {
+            View taskView = createView(parent, R.layout.main_task_list_item);
+            return new TaskItemViewHolder(taskView);
+        }
     }
 
-    public abstract class BaseHolder extends RecyclerView.ViewHolder {
+    public static class DayOfWeekViewHolder extends BaseHolder {
+
+        TextView DateTextView;
+
+        public DayOfWeekViewHolder(View itemView) {
+            super(itemView);
+        }
+
+        @Override
+        public void bindView(int position) {
+            DateTextView.setText("Monday");
+        }
+
+        @Override
+        protected void ViewReferences() {
+            DateTextView = (TextView) itemView.findViewById(R.id.task_date_TV);
+        }
+
+        public static BaseHolder newInstance(ViewGroup parent) {
+            View dayView = createView(parent, R.layout.main_task_day_item);
+            return new DayOfWeekViewHolder(dayView);
+        }
+    }
+
+    public abstract static class BaseHolder extends RecyclerView.ViewHolder {
 
         public BaseHolder(View itemView) {
             super(itemView);
@@ -158,5 +158,9 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.BaseHolder> 
         public abstract void bindView(int position);
 
         protected abstract void ViewReferences();
+
+        protected static View createView(ViewGroup parent, int layoutId){
+            return LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
+        }
     }
 }

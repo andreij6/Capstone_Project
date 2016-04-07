@@ -52,7 +52,5 @@ public class MainActivityVM {
     public MapHelper getMapHelper() {
         return mMapHelper;
     }
-
-
     //endregion
 }

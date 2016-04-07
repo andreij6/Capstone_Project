@@ -47,4 +47,5 @@ public class TaskItemVM {
     public String getCategory() {
         return item.getCategory();
     }
+
 }
