@@ -11,7 +11,7 @@
     <dimen name="task_item_height">60dp</dimen>
 
     <!-- Task Detail -->
-    <dimen name="detail_appbar_height">250dp</dimen>
+    <dimen name="detail_appbar_height">125dp</dimen>
 
     <!-- Main Activity -->
     <dimen name="main_appbar_height">250dp</dimen>

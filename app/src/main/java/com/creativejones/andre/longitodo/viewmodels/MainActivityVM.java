@@ -2,9 +2,8 @@ package com.creativejones.andre.longitodo.viewmodels;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 
-import com.creativejones.andre.longitodo.handler.MapHelper;
+import com.creativejones.andre.longitodo.helper.MapHelper;
 
 public class MainActivityVM {
 

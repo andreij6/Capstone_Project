@@ -1,4 +1,4 @@
-package com.creativejones.andre.longitodo.handler;
+package com.creativejones.andre.longitodo.helper;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

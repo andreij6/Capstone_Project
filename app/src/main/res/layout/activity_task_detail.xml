@@ -55,7 +55,7 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Map"
+                        android:text="List"
                         android:id="@+id/detail_map_button"
                         android:layout_weight="1"
                         style="@style/task_navigate_option"

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.creativejones.andre.longitodo.app.MainActivity;
+import com.creativejones.andre.longitodo.app.NewEditActivity;
 import com.creativejones.andre.longitodo.viewmodels.TaskItemVM;
 
 public class TaskDetailHandler {
@@ -25,6 +26,7 @@ public class TaskDetailHandler {
 
     @SuppressWarnings("unused")
     public void onClickEdit(View view){
-        Toast.makeText(_Context, "Go to Edit", Toast.LENGTH_SHORT).show();
+        _Context.startActivity(new Intent(_Context, NewEditActivity.class));
+        //.putExtra(NewEditActivity.EDIT_MODEL_KEY, ViewModel)
     }
 }
