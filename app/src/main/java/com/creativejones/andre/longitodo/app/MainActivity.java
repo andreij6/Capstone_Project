@@ -15,10 +15,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements GoogleServicesHelper.GoogleServicesListener {
+public class MainActivity extends AppCompatActivity
+        implements GoogleServicesHelper.GoogleServicesListener {
 
-    MainActivityVM ViewModel = new MainActivityVM();
-
+    MainActivityVM ViewModel;
     GoogleServicesHelper GoogleServicesHelper;
     ActivityMainBinding Binding;
 
@@ -28,7 +28,9 @@ public class MainActivity extends AppCompatActivity implements GoogleServicesHel
 
         Binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        Binding.setVm(ViewModel.build(this, savedInstanceState));
+        ViewModel = MainActivityVM.newInstance(this, savedInstanceState);
+
+        Binding.setVm(ViewModel);
 
         initMap();
 
@@ -58,16 +60,18 @@ public class MainActivity extends AppCompatActivity implements GoogleServicesHel
     //region Helpers
     private void initMap() {
         SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                                                                .findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(ViewModel.getMapHelper());
     }
 
     private void createRecycler() {
         List<TaskItem> fakeData = new ArrayList<>();
+
         TaskItem bob = new TaskItem();
         bob.setName("Bob");
         fakeData.add(bob);
+
         Binding.taskList.setAdapter(new TasksAdapter(this, fakeData));
         Binding.taskList.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -84,4 +88,5 @@ public class MainActivity extends AppCompatActivity implements GoogleServicesHel
 
     }
     //endregion
+
 }

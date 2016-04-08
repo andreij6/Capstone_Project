@@ -55,13 +55,13 @@
                 android:paddingBottom="10dp"
                 android:id="@+id/taskList"
                 android:scrollbarStyle="outsideOverlay"
-                android:visibility="@{vm.listVisibility()}"/>
+                android:visibility="@{vm.hasTasks() ? View.VISIBLE : View.GONE}"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="No Items In List"
-                android:visibility="@{vm.emptyListDisplay()}"
+                android:visibility="@{vm.hasTasks() ? View.GONE : View.VISIBLE}"
                 android:gravity="center_horizontal"/>
 
         </RelativeLayout>

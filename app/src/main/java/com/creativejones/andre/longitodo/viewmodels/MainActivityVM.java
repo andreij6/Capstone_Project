@@ -20,24 +20,17 @@ public class MainActivityVM {
      * @param savedInstanceState
      * @return self
      */
-    public MainActivityVM build(Context context, Bundle savedInstanceState) {
-        mContext = context;
-
-        mMapHelper = new MapHelper();
-
-        recreateViewModel(savedInstanceState);
-
-        return this;
+    public static MainActivityVM newInstance(Context context, Bundle savedInstanceState) {
+        MainActivityVM vm = new MainActivityVM();
+        vm.mContext = context;
+        vm.mMapHelper = new MapHelper();
+        vm.recreateViewModel(savedInstanceState);
+        return vm;
     }
 
     @SuppressWarnings("unused")
-    public int listVisibility(){
-        return true ? View.VISIBLE : View.GONE;
-    }
-
-    @SuppressWarnings("unused")
-    public int emptyListDisplay(){
-        return false ? View.VISIBLE : View.GONE;
+    public boolean hasTasks(){
+        return true;
     }
 
     public void saveInstanceState(Bundle outState) {
