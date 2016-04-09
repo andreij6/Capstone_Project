@@ -1,7 +1,6 @@
 package com.creativejones.andre.longitodo.widget;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.creativejones.andre.longitodo.R;
-import com.creativejones.andre.longitodo.app.TaskDetailActivity;
 import com.creativejones.andre.longitodo.models.TaskItem;
 import com.creativejones.andre.longitodo.viewmodels.TaskItemVM;
 
@@ -26,10 +24,13 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.BaseHolder> 
 
     static List<TaskItem> TaskList;
     static Context _Context;
+    static AdapterInteractionListener Listener;
 
     public TasksAdapter(Context context, List<TaskItem> items){
         _Context = context;
         TaskList = items;
+        Listener = (AdapterInteractionListener)context;
+
     }
 
     @Override
@@ -108,11 +109,8 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.BaseHolder> 
 
                 @Override
                 public void onClick(View v) {
-
-                    //make viewModel Parcelable
-                    Intent intent = new Intent(_Context, TaskDetailActivity.class).putExtra(TaskDetailActivity.TASK_DETAIL_EXTRA, 2);
-
-                    _Context.startActivity(intent);
+                    if(Listener != null)
+                        Listener.onShowTaskDetailInteration(viewModel);
                 }
             };
         }
@@ -161,5 +159,9 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.BaseHolder> 
         protected static View createView(ViewGroup parent, int layoutId){
             return LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
         }
+    }
+
+    public interface AdapterInteractionListener {
+        void onShowTaskDetailInteration(TaskItemVM viewModel);
     }
 }

@@ -19,9 +19,9 @@ public class GoogleServicesHelper implements GoogleApiClient.ConnectionCallbacks
     Activity mActivity;
     GoogleApiClient mClient;
 
-    public GoogleServicesHelper(GoogleServicesListener listener){
+    public GoogleServicesHelper(GoogleServicesListener listener, Activity activity){
         mListener = listener;
-        mActivity = (Activity)listener;
+        mActivity = activity;
 
        mClient = new GoogleApiClient.Builder(mActivity)
                .addConnectionCallbacks(this)

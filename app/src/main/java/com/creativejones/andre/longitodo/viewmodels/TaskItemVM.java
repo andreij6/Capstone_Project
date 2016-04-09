@@ -3,6 +3,8 @@ package com.creativejones.andre.longitodo.viewmodels;
 import com.creativejones.andre.longitodo.R;
 import com.creativejones.andre.longitodo.models.TaskItem;
 
+import org.stringtemplate.v4.misc.STCompiletimeMessage;
+
 public class TaskItemVM {
     
     private TaskItem item;
@@ -48,4 +50,9 @@ public class TaskItemVM {
         return item.getCategory();
     }
 
+    public static final String KEY = "vm_key";
+
+    public static TaskItemVM newStubInstance() {
+        return new TaskItemVM(new TaskItem());
+    }
 }

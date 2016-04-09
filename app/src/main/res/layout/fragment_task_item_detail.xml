@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="vm" type="com.creativejones.andre.longitodo.viewmodels.TaskItemVM"/>
+        <variable name="model" type="com.creativejones.andre.longitodo.viewmodels.TaskItemVM"/>
         <variable name="handler" type="com.creativejones.andre.longitodo.handlers.TaskDetailHandler"/>
     </data>
 

@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.creativejones.andre.longitodo.helper.MapHelper;
 
-public class MainActivityVM {
+public class MapListViewModel {
 
     Context mContext;
     MapHelper mMapHelper;
@@ -19,8 +19,8 @@ public class MainActivityVM {
      * @param savedInstanceState
      * @return self
      */
-    public static MainActivityVM newInstance(Context context, Bundle savedInstanceState) {
-        MainActivityVM vm = new MainActivityVM();
+    public static MapListViewModel newInstance(Context context, Bundle savedInstanceState) {
+        MapListViewModel vm = new MapListViewModel();
         vm.mContext = context;
         vm.mMapHelper = new MapHelper();
 

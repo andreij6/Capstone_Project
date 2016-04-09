@@ -1,40 +1,53 @@
 package com.creativejones.andre.longitodo.app;
 
+
 import android.databinding.DataBindingUtil;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.creativejones.andre.longitodo.R;
-import com.creativejones.andre.longitodo.databinding.ActivityTaskDetailBinding;
+import com.creativejones.andre.longitodo.databinding.FragmentTaskItemDetailBinding;
 import com.creativejones.andre.longitodo.handlers.TaskDetailHandler;
-import com.creativejones.andre.longitodo.models.TaskItem;
 import com.creativejones.andre.longitodo.viewmodels.TaskItemVM;
 
-public class TaskDetailActivity extends AppCompatActivity {
-
-    public static final String TASK_DETAIL_EXTRA = "detail_extra";
+public class TaskItemDetailFragment extends Fragment {
 
     TaskItemVM ViewModel;
+    FragmentTaskItemDetailBinding Binding;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ActivityTaskDetailBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_task_detail);
-
-        //TODO: get Item from intent
-        ViewModel = new TaskItemVM(new TaskItem());
-
-        binding.setVm(ViewModel);
-        binding.setHandler(new TaskDetailHandler(this, ViewModel));
-
-        configureToolbars();
+    public static TaskItemDetailFragment newInstance(TaskItemVM vm){
+        return new TaskItemDetailFragment();
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        //ViewModel = getArguments().get(TaskItemVM.KEY);
+        ViewModel = TaskItemVM.newStubInstance();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Binding = DataBindingUtil.inflate(inflater, R.layout.fragment_task_item_detail, container, false);
+
+        Binding.setModel(ViewModel);
+        Binding.setHandler(new TaskDetailHandler(getActivity(), ViewModel));
+
+        return Binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    /*
     private void configureToolbars() {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,5 +64,5 @@ public class TaskDetailActivity extends AppCompatActivity {
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.collapsedappbar);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.expanedappbar);
     }
-
+    */
 }

@@ -26,10 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".app.TaskDetailActivity"
-            android:parentActivityName=".app.MainActivity">
-        </activity>
         <activity android:name=".app.NewEditActivity">
         </activity>
     </application>
