@@ -3,7 +3,6 @@ package com.creativejones.andre.longitodo.handlers;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.widget.Toast;
 
 import com.creativejones.andre.longitodo.app.MainActivity;
 import com.creativejones.andre.longitodo.app.NewEditActivity;

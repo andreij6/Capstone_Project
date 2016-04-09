@@ -1,9 +1,7 @@
-package com.creativejones.andre.longitodo.app;
+package com.creativejones.andre.longitodo.widget;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.creativejones.andre.longitodo.R;
+import com.creativejones.andre.longitodo.app.TaskDetailActivity;
 import com.creativejones.andre.longitodo.models.TaskItem;
 import com.creativejones.andre.longitodo.viewmodels.TaskItemVM;
 

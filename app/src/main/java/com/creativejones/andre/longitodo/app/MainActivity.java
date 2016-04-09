@@ -10,6 +10,7 @@ import com.creativejones.andre.longitodo.databinding.ActivityMainBinding;
 import com.creativejones.andre.longitodo.google.GoogleServicesHelper;
 import com.creativejones.andre.longitodo.models.TaskItem;
 import com.creativejones.andre.longitodo.viewmodels.MainActivityVM;
+import com.creativejones.andre.longitodo.widget.TasksAdapter;
 import com.google.android.gms.maps.SupportMapFragment;
 
 import java.util.ArrayList;

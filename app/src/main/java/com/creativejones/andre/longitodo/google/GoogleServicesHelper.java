@@ -33,35 +33,30 @@ public class GoogleServicesHelper implements GoogleApiClient.ConnectionCallbacks
     }
 
     public void connect(){
-        if(isGooglePlayServicesAvailable()) {
+        if(isGooglePlayServicesAvailable())
             mClient.connect();
-        } else {
+        else
             mListener.onDisconnected();
-        }
     }
 
     public void disconnect(){
-        if(isGooglePlayServicesAvailable()) {
+        if(isGooglePlayServicesAvailable())
             mClient.disconnect();
-        } else {
+        else
             mListener.onDisconnected();
-        }
     }
 
     private boolean isGooglePlayServicesAvailable(){
         int availability = GooglePlayServicesUtil.isGooglePlayServicesAvailable(mActivity);
 
-        switch (availability){
-            case ConnectionResult.SUCCESS:
-                return true;
-            case ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED:
-            case ConnectionResult.SERVICE_DISABLED:
-            case ConnectionResult.SERVICE_INVALID:
-                GooglePlayServicesUtil.getErrorDialog(availability, mActivity, REQUEST_CODE_AVAILABILITY).show();
-                return false;
-            default:
-                return false;
+        boolean isAvailable = true;
+
+        if(availability != ConnectionResult.SUCCESS) {
+            GooglePlayServicesUtil.getErrorDialog(availability, mActivity, REQUEST_CODE_AVAILABILITY).show();
+            isAvailable = false;
         }
+
+        return isAvailable;
     }
 
     @Override
@@ -79,7 +74,7 @@ public class GoogleServicesHelper implements GoogleApiClient.ConnectionCallbacks
         if(connectionResult.hasResolution()){
             try {
                 connectionResult.startResolutionForResult(mActivity, REQUEST_CODE_RESOLUTION);
-            }catch (IntentSender.SendIntentException e){
+            } catch (IntentSender.SendIntentException e){
                 connect();
             }
         } else {

@@ -23,7 +23,10 @@ public class MainActivityVM {
         MainActivityVM vm = new MainActivityVM();
         vm.mContext = context;
         vm.mMapHelper = new MapHelper();
-        vm.recreateViewModel(savedInstanceState);
+
+        if(savedInstanceState != null)
+            vm.recreateViewModel(savedInstanceState);
+
         return vm;
     }
 
@@ -36,7 +39,7 @@ public class MainActivityVM {
 
     }
 
-    //region Private Helpers
+    //region Helpers
     private void recreateViewModel(Bundle from) {
         if(from == null) return;
     }
