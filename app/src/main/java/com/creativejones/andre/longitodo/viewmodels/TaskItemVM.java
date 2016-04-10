@@ -53,6 +53,8 @@ public class TaskItemVM {
     public static final String KEY = "vm_key";
 
     public static TaskItemVM newStubInstance() {
-        return new TaskItemVM(new TaskItem());
+        TaskItem item = new TaskItem();
+        item.setName("Bob");
+        return new TaskItemVM(item);
     }
 }

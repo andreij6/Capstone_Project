@@ -1,13 +1,12 @@
 package com.creativejones.andre.longitodo.app;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.creativejones.andre.longitodo.R;
 import com.creativejones.andre.longitodo.viewmodels.TaskItemVM;
 import com.creativejones.andre.longitodo.widget.TasksAdapter;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
                             implements TasksAdapter.AdapterInteractionListener
 {
 
