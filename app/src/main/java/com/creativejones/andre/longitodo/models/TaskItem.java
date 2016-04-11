@@ -7,6 +7,7 @@ public class TaskItem {
     private String Name, Category;
     private boolean isCompleted;
     private int _Priority;
+    private TaskLocation Location;
 
     public TaskItem(){
         Name = "bob";

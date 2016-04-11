@@ -89,16 +89,6 @@ public class MapListFragment extends Fragment
         GoogleHelper.disconnect();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        //FragmentManager fm = getActivity().getSupportFragmentManager();
-        //Fragment fragment = (fm.findFragmentById(R.id.map));
-        //FragmentTransaction ft = fm.beginTransaction();
-        //ft.remove(fragment);
-        //ft.commit();
-    }
-
     //region Google Play Services Listener
     @Override
     public void onConnected() {
@@ -115,7 +105,6 @@ public class MapListFragment extends Fragment
         mMapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentByTag(MAP_FRAGMENT_TAG);
 
         if(mMapFragment == null){
-            Toast.makeText(getActivity(), "hello", Toast.LENGTH_LONG).show();
 
             mMapFragment= SupportMapFragment.newInstance();
 

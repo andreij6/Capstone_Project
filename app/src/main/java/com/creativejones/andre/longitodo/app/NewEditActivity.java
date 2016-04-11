@@ -46,7 +46,6 @@ public class NewEditActivity extends BaseActivity {
             return mapFragment;
         }
 
-
         return EditTaskFragment.newInstance();
 
     }
