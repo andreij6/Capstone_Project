@@ -8,24 +8,23 @@ import com.creativejones.andre.longitodo.app.MainActivity;
 import com.creativejones.andre.longitodo.app.NewEditActivity;
 import com.creativejones.andre.longitodo.viewmodels.TaskItemVM;
 
-public class TaskDetailHandler {
+public class TaskDetailHandler extends BaseHandler {
 
     private TaskItemVM ViewModel;
-    private Context _Context;
 
     public TaskDetailHandler(Context context, TaskItemVM viewModel) {
+        super(context);
         ViewModel = viewModel;
-        _Context = context;
     }
 
     @SuppressWarnings("unused")
     public void onClickMap(View view){
-        _Context.startActivity(new Intent(_Context, MainActivity.class));
+        startActivity(new Intent(_Context, MainActivity.class));
     }
 
     @SuppressWarnings("unused")
     public void onClickEdit(View view){
-        _Context.startActivity(new Intent(_Context, NewEditActivity.class));
+        startActivity(new Intent(_Context, NewEditActivity.class));
         //.putExtra(NewEditActivity.EDIT_MODEL_KEY, ViewModel)
     }
 }

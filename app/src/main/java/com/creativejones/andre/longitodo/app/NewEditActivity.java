@@ -20,6 +20,7 @@ public class NewEditActivity extends BaseActivity {
         setContentView(R.layout.activity_new_edit);
 
         ViewModel = TaskItemVM.newStubInstance();
+        ViewModel.set_Context(this);
 
         if(isTablet())
             addLayout(EditDualPaneFragment.newInstance(savedInstanceState));

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.creativejones.andre.longitodo.R;
 import com.creativejones.andre.longitodo.databinding.FragmentMapListBinding;
 import com.creativejones.andre.longitodo.google.GoogleServicesHelper;
+import com.creativejones.andre.longitodo.handlers.MainViewHandler;
 import com.creativejones.andre.longitodo.models.TaskItem;
 import com.creativejones.andre.longitodo.viewmodels.MapListViewModel;
 import com.creativejones.andre.longitodo.widget.TasksAdapter;
@@ -60,6 +61,7 @@ public class MapListFragment extends Fragment
         initializeMap();
 
         Binding.setViewmodel(ViewModel);
+        Binding.setHandler(new MainViewHandler(getActivity()));
 
         return Binding.getRoot();
     }

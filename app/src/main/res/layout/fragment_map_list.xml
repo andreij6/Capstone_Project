@@ -4,6 +4,7 @@
     <data>
         <import type="android.view.View" />
         <variable name="viewmodel" type="com.creativejones.andre.longitodo.viewmodels.MapListViewModel"/>
+        <variable name="handler" type="com.creativejones.andre.longitodo.handlers.MainViewHandler"/>
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -43,7 +44,40 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+            <LinearLayout
+                android:layout_height="32dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:id="@+id/detail_actions"
+                android:background="@color/lightGrayTextColor"
+                app:layout_collapseMode="pin">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_task"
+                    android:id="@+id/detail_map_button"
+                    android:layout_weight="1"
+                    style="@style/main_navigate_option"
+                    android:layout_gravity="center_horizontal"
+                    android:onClick="@{handler.onClickNew}"
+                    android:layout_marginRight="1dp"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/completed"
+                    android:id="@+id/detail_task_button"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    style="@style/main_navigate_option"
+                    android:layout_marginLeft="1dp"
+                    android:onClick="@{handler.onClickCompleted}"/>
+
+            </LinearLayout>
+
             <android.support.v7.widget.RecyclerView
+                android:layout_below="@+id/detail_actions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
@@ -53,6 +87,7 @@
                 android:visibility="@{viewmodel.hasTasks() ? View.VISIBLE : View.GONE}"/>
 
             <TextView
+                android:layout_below="@+id/detail_actions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="No Items In List"

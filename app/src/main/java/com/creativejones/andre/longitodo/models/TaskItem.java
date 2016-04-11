@@ -1,10 +1,12 @@
 package com.creativejones.andre.longitodo.models;
 
+import android.content.Context;
+
 import com.creativejones.andre.longitodo.viewmodels.TaskItemVM;
 
 public class TaskItem {
 
-    private String Name, Category;
+    private String Name, Category, Description;
     private boolean isCompleted;
     private int _Priority;
     private TaskLocation Location;
@@ -16,8 +18,10 @@ public class TaskItem {
         Category = "Shoe Shopping";
     }
 
-    public TaskItemVM toViewModel() {
-        return TaskItemVM.newInstance(this);
+    public TaskItemVM toViewModel(Context context) {
+        TaskItemVM viewModel = TaskItemVM.newInstance(this);
+        viewModel.set_Context(context);
+        return viewModel;
     }
 
     //region Getters & Setters
@@ -37,12 +41,28 @@ public class TaskItem {
         return _Priority;
     }
 
-    public void complete() {
-        isCompleted = true;
+    public void complete(boolean isComplete) {
+        isCompleted = isComplete;
     }
 
     public String getCategory() {
         return Category;
+    }
+
+    public void setDescription(String desc){
+        Description = desc;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public boolean hasLocation() {
+        return Location != null;
+    }
+
+    public TaskLocation getLocation() {
+        return Location;
     }
     //endregion
 

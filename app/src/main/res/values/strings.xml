@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">LongiTODO</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="priorityHigh">High</string>
+    <string name="priorityMedium">Medium</string>
+    <string name="priorityLow">Low</string>
+    <string name="priorityNone">No Priority Selected</string>
+    <string name="no_location">No Location</string>
+    <string name="new_task">New Task</string>
+    <string name="completed">Completed</string>
 </resources>

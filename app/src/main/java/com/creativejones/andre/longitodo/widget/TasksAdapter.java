@@ -77,9 +77,9 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.BaseHolder> 
 
         @Override
         public void bindView(int position) {
-            viewModel = TaskList.get(0).toViewModel();
+            viewModel = TaskList.get(0).toViewModel(_Context);
 
-            Priority.setBackgroundColor(ContextCompat.getColor(_Context, viewModel.getPriority()));
+            Priority.setBackgroundColor(ContextCompat.getColor(_Context, viewModel.getPriorityColor()));
 
             Name.setText(viewModel.getName());
             Name.setOnClickListener(goToTaskDetail());

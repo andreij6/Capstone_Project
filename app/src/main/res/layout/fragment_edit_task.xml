@@ -22,10 +22,11 @@
         android:id="@+id/edit_task_priority_spinner"
         android:layout_gravity="center_horizontal"/>
 
-    <EditText
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_task_location"
-        android:layout_gravity="center_horizontal"
-        android:enabled="false"/>
+        android:text="Add Location"
+        android:id="@+id/edit_task_add_location"
+        android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>

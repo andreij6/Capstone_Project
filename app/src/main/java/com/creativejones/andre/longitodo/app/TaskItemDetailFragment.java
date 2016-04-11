@@ -33,6 +33,8 @@ public class TaskItemDetailFragment extends Fragment {
 
         //ViewModel = getArguments().get(TaskItemVM.KEY);
         ViewModel = TaskItemVM.newStubInstance();
+        ViewModel.set_Context(getActivity());
+
     }
 
     @Nullable

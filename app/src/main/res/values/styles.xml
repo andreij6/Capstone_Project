@@ -42,6 +42,14 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="main_navigate_option">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@color/darkGrayBackground</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
     <style name="collapsedappbar">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@android:color/white</item>
@@ -50,6 +58,17 @@
     <style name="expanedappbar">
         <item name="android:textSize">30sp</item>
         <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="detail_property_label">
+        <item name="android:textSize">9sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="detail_property_value">
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
     </style>
 
 </resources>
