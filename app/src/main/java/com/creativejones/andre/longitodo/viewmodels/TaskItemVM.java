@@ -1,8 +1,10 @@
 package com.creativejones.andre.longitodo.viewmodels;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 
 import com.creativejones.andre.longitodo.R;
+import com.creativejones.andre.longitodo.handlers.TaskDetailHandler;
 import com.creativejones.andre.longitodo.models.TaskItem;
 
 public class TaskItemVM {
@@ -21,6 +23,12 @@ public class TaskItemVM {
         item.setName("Bob");
         item.setDescription("This is a good long description");
         return new TaskItemVM(item);
+    }
+
+    public static TaskItemVM newEmptyInstance(Context context) {
+        TaskItemVM vm = new TaskItemVM(new TaskItem());
+        vm.setContext(context);
+        return vm;
     }
 
     public TaskItemVM(TaskItem _item){
@@ -78,15 +86,23 @@ public class TaskItemVM {
         return item.getDescription();
     }
 
+
     public String getLocationName(){
         return item.hasLocation() ? item.getLocation().getName() : getString(R.string.no_location);
+    }
+
+    //for edit task button
+    public String getLocationBtnDisplay(){
+        return item.hasLocation() ? item.getLocation().getName() : getString(R.string.addlocation);
     }
 
     private String getString(int resourceId) {
         return _Context.getString(resourceId);
     }
 
-    public void set_Context(Context context) {
+    public void setContext(Context context) {
         _Context = context;
     }
+
+
 }

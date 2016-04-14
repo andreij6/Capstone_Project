@@ -20,7 +20,7 @@ public class TaskItem {
 
     public TaskItemVM toViewModel(Context context) {
         TaskItemVM viewModel = TaskItemVM.newInstance(this);
-        viewModel.set_Context(context);
+        viewModel.setContext(context);
         return viewModel;
     }
 

@@ -19,7 +19,7 @@ public class TaskDetailHandler extends BaseHandler {
 
     @SuppressWarnings("unused")
     public void onClickMap(View view){
-        startActivity(new Intent(_Context, MainActivity.class));
+        startActivity(MainActivity.class);
     }
 
     @SuppressWarnings("unused")

@@ -33,7 +33,7 @@ public class TaskItemDetailFragment extends Fragment {
 
         //ViewModel = getArguments().get(TaskItemVM.KEY);
         ViewModel = TaskItemVM.newStubInstance();
-        ViewModel.set_Context(getActivity());
+        ViewModel.setContext(getActivity());
 
     }
 
@@ -41,7 +41,6 @@ public class TaskItemDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Binding = DataBindingUtil.inflate(inflater, R.layout.fragment_task_item_detail, container, false);
-
         Binding.setModel(ViewModel);
         Binding.setHandler(new TaskDetailHandler(getActivity(), ViewModel));
         return Binding.getRoot();

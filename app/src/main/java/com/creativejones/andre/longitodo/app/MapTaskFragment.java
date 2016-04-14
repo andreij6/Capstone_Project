@@ -7,13 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.creativejones.andre.longitodo.R;
+import com.creativejones.andre.longitodo.viewmodels.TaskItemVM;
 
 public class MapTaskFragment extends BaseEditorFragment {
 
     public static final String FRAGMENT_TAG = "map_task_fragment";
+    private TaskItemVM ViewModel;
     
-    public static MapTaskFragment newInstance(Bundle savedInstanceState) {
-        return new MapTaskFragment();
+    public static MapTaskFragment newInstance(TaskItemVM viewModel) {
+        MapTaskFragment fragment = new MapTaskFragment();
+        fragment.setViewModel(viewModel);
+        return fragment;
     }
 
     @Override
@@ -35,5 +39,9 @@ public class MapTaskFragment extends BaseEditorFragment {
     @Override
     public String getEditorTag() {
         return FRAGMENT_TAG;
+    }
+
+    public void setViewModel(TaskItemVM viewModel) {
+        ViewModel = viewModel;
     }
 }

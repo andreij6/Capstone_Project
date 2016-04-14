@@ -8,4 +8,9 @@
     <string name="no_location">No Location</string>
     <string name="new_task">New Task</string>
     <string name="completed">Completed</string>
+
+    <string name="descriptionHint">Description</string>
+    <string name="taskNameHint">Task Name</string>
+    <string name="edit_new_title">Edit Task</string>
+    <string name="addlocation">Add Location</string>
 </resources>

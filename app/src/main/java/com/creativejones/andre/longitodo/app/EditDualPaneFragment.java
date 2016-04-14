@@ -7,12 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.creativejones.andre.longitodo.R;
+import com.creativejones.andre.longitodo.viewmodels.TaskItemVM;
 
 public class EditDualPaneFragment extends BaseEditorFragment {
 
     public static final String FRAGMENT_TAG = "dual_editor_tag";
 
-    public static EditDualPaneFragment newInstance(Bundle savedInstanceState) {
+    public static EditDualPaneFragment newInstance(TaskItemVM viewModel, Bundle savedInstanceState) {
         return new EditDualPaneFragment();
     }
 

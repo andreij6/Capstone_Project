@@ -13,4 +13,8 @@ public abstract class BaseHandler {
     protected void startActivity(Intent intent){
         _Context.startActivity(intent);
     }
+
+    protected void startActivity(Class<?> cls){
+        startActivity(new Intent(_Context, cls));
+    }
 }
