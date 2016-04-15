@@ -2,6 +2,7 @@ package com.creativejones.andre.longitodo.handlers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 public abstract class BaseHandler {
     protected Context _Context;
@@ -16,5 +17,9 @@ public abstract class BaseHandler {
 
     protected void startActivity(Class<?> cls){
         startActivity(new Intent(_Context, cls));
+    }
+
+    protected void Toast(String content){
+        Toast.makeText(_Context, content, Toast.LENGTH_LONG).show();
     }
 }

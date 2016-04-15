@@ -1,8 +1,10 @@
 package com.creativejones.andre.longitodo.app;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +15,18 @@ import android.widget.Toast;
 
 import com.creativejones.andre.longitodo.R;
 import com.creativejones.andre.longitodo.databinding.FragmentEditTaskBinding;
-import com.creativejones.andre.longitodo.databinding.FragmentMapListBinding;
 import com.creativejones.andre.longitodo.handlers.ModifyTaskHandler;
 import com.creativejones.andre.longitodo.viewmodels.TaskItemVM;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.LatLng;
 
-public class EditTaskFragment extends BaseEditorFragment {
-
-    public static final String FRAGMENT_TAG = "editor_tag";
+public class EditTaskFragment extends Fragment implements EditLocationDialogFragment.EditLocationInteraction {
 
     private TaskItemVM ViewModel;
     FragmentEditTaskBinding Binding;
+    private LatLng Position;
+    private String Name;
 
     public static EditTaskFragment newInstance(TaskItemVM vm){
         EditTaskFragment fragment = new EditTaskFragment();
@@ -63,6 +67,25 @@ public class EditTaskFragment extends BaseEditorFragment {
         setSpinnerItems(Binding.editTaskPrioritySpinner, getPriorities());
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == NewEditActivity.REQUEST_PLACE_PICKER && resultCode == NewEditActivity.RESULT_OK) {
+
+            // The user has selected a place. Extract the name and address.
+            final Place place = PlacePicker.getPlace(data, getActivity());
+
+            Position = place.getLatLng();
+            Name = place.getName().toString();
+
+            EditLocationDialogFragment dialog = EditLocationDialogFragment.newInstance(this, Name);
+
+            dialog.show(getChildFragmentManager(), "location");
+
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
     private void setSpinnerItems(Spinner spinner, final String[] items) {
         spinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items));
 
@@ -87,13 +110,18 @@ public class EditTaskFragment extends BaseEditorFragment {
         return new String[]{ "Shopping", "Grocery", "Errands"};
     }
 
-    @Override
-    public String getEditorTag() {
-        return FRAGMENT_TAG;
-    }
-
     public void setViewModel(TaskItemVM viewModel) {
         ViewModel = viewModel;
+    }
+
+    @Override
+    public void onPositiveClick(String name) {
+        Name = name;
+    }
+
+    @Override
+    public void onNegativeClick() {
+
     }
 }
 

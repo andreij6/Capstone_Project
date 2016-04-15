@@ -3,10 +3,12 @@ package com.creativejones.andre.longitodo.google;
 import android.app.Activity;
 import android.content.IntentSender;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.plus.Plus;
 
 public class GoogleServicesHelper implements GoogleApiClient.ConnectionCallbacks,
@@ -26,9 +28,10 @@ public class GoogleServicesHelper implements GoogleApiClient.ConnectionCallbacks
        mClient = new GoogleApiClient.Builder(mActivity)
                .addConnectionCallbacks(this)
                .addOnConnectionFailedListener(this)
-               .addApi(Plus.API, Plus.PlusOptions.builder()
-                       .setServerClientId("798656238650-r40fl6esh1uj21niehckfn85jtg6cgib.apps.googleusercontent.com")
-                       .build())
+               .addApi(Plus.API, Plus.PlusOptions.builder().setServerClientId("798656238650-r40fl6esh1uj21niehckfn85jtg6cgib.apps.googleusercontent.com").build())
+               .addApi(Places.GEO_DATA_API)
+               .addApi(Places.PLACE_DETECTION_API)
+               .enableAutoManage((FragmentActivity)mActivity, this)
                .build();
     }
 

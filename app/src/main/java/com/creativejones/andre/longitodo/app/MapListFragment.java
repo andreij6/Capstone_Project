@@ -3,13 +3,10 @@ package com.creativejones.andre.longitodo.app;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.creativejones.andre.longitodo.R;
 import com.creativejones.andre.longitodo.databinding.FragmentMapListBinding;
@@ -18,7 +15,8 @@ import com.creativejones.andre.longitodo.handlers.MainViewHandler;
 import com.creativejones.andre.longitodo.models.TaskItem;
 import com.creativejones.andre.longitodo.viewmodels.MapListViewModel;
 import com.creativejones.andre.longitodo.widget.TasksAdapter;
-import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
 import java.util.ArrayList;
@@ -31,7 +29,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class MapListFragment extends Fragment
-        implements GoogleServicesHelper.GoogleServicesListener {
+        implements GoogleServicesHelper.GoogleServicesListener, OnMapReadyCallback {
 
     private static final String MAP_FRAGMENT_TAG = "map_fragment_tag";
 
@@ -39,6 +37,7 @@ public class MapListFragment extends Fragment
     FragmentMapListBinding Binding;
     GoogleServicesHelper GoogleHelper;
     SupportMapFragment mMapFragment;
+    GoogleMap Map;
 
     public MapListFragment() {
         // Required empty public constructor
@@ -116,7 +115,7 @@ public class MapListFragment extends Fragment
                     .commit();
         }
 
-        mMapFragment.getMapAsync(ViewModel.getMapHelper());
+        mMapFragment.getMapAsync(this);
 
     }
 
@@ -131,4 +130,10 @@ public class MapListFragment extends Fragment
         Binding.taskList.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        Map = googleMap;
+
+
+    }
 }

@@ -3,12 +3,9 @@ package com.creativejones.andre.longitodo.viewmodels;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.creativejones.andre.longitodo.helper.MapHelper;
-
 public class MapListViewModel {
 
     Context mContext;
-    MapHelper mMapHelper;
 
     /**
      * <p>
@@ -22,7 +19,6 @@ public class MapListViewModel {
     public static MapListViewModel newInstance(Context context, Bundle savedInstanceState) {
         MapListViewModel vm = new MapListViewModel();
         vm.mContext = context;
-        vm.mMapHelper = new MapHelper();
 
         if(savedInstanceState != null)
             vm.recreateViewModel(savedInstanceState);
@@ -42,10 +38,6 @@ public class MapListViewModel {
     //region Helpers
     private void recreateViewModel(Bundle from) {
         if(from == null) return;
-    }
-
-    public MapHelper getMapHelper() {
-        return mMapHelper;
     }
     //endregion
 }

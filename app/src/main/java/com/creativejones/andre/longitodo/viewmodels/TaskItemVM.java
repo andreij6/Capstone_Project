@@ -105,4 +105,11 @@ public class TaskItemVM {
     }
 
 
+    public EditLocationVM ToLocationVM() {
+        if(hasLocation()) {
+            return EditLocationVM.newInstance(this.item.getLocation());
+        }
+
+        return EditLocationVM.newInstance();
+    }
 }
