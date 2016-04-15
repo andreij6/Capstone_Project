@@ -3,6 +3,7 @@ package com.creativejones.andre.longitodo.app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 import com.creativejones.andre.longitodo.R;
 import com.creativejones.andre.longitodo.google.GoogleServicesHelper;
@@ -65,11 +66,16 @@ public class NewEditActivity extends BaseActivity
         // Construct an intent for the place picker
         try {
             sendPlacesIntent();
-        } catch (GooglePlayServicesRepairableException e) {
+        } catch (GooglePlayServicesRepairableException e ) {
             // ...
         } catch (GooglePlayServicesNotAvailableException e) {
             // ...
         }
+    }
+
+    @Override
+    public void onSaveTask(TaskItemVM viewModel) {
+        Toast.makeText(this, viewModel.getName(), Toast.LENGTH_LONG).show();
     }
 
     private void sendPlacesIntent() throws GooglePlayServicesRepairableException, GooglePlayServicesNotAvailableException{

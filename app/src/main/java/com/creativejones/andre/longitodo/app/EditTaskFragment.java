@@ -54,7 +54,7 @@ public class EditTaskFragment extends Fragment implements EditLocationDialogFrag
         Binding = DataBindingUtil.inflate(inflater, R.layout.fragment_edit_task, container, false);
 
         Binding.setViewmodel(ViewModel);
-        Binding.setHandler(new ModifyTaskHandler(getActivity(), ViewModel));
+        Binding.setHandler(new ModifyTaskHandler(getActivity(), ViewModel, Binding));
 
         return Binding.getRoot();
     }
@@ -117,6 +117,8 @@ public class EditTaskFragment extends Fragment implements EditLocationDialogFrag
     @Override
     public void onPositiveClick(String name) {
         Name = name;
+        Binding.locationTextView.setText(name);
+        Binding.locationTextView.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class TaskItemVM {
     }
 
     public boolean hasLocation() {
-        return true;
+        return item.hasLocation();
     }
 
     public boolean isCompleted() {
@@ -111,5 +111,13 @@ public class TaskItemVM {
         }
 
         return EditLocationVM.newInstance();
+    }
+
+    public void setName(String name) {
+        item.setName(name);
+    }
+
+    public void setItem(TaskItem item) {
+        this.item = item;
     }
 }

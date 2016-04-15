@@ -13,6 +13,7 @@ import com.creativejones.andre.longitodo.databinding.FragmentMapListBinding;
 import com.creativejones.andre.longitodo.google.GoogleServicesHelper;
 import com.creativejones.andre.longitodo.handlers.MainViewHandler;
 import com.creativejones.andre.longitodo.models.TaskItem;
+import com.creativejones.andre.longitodo.models.TaskLocation;
 import com.creativejones.andre.longitodo.viewmodels.MapListViewModel;
 import com.creativejones.andre.longitodo.widget.TasksAdapter;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,7 +30,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class MapListFragment extends Fragment
-        implements GoogleServicesHelper.GoogleServicesListener, OnMapReadyCallback {
+        implements GoogleServicesHelper.GoogleServicesListener, OnMapReadyCallback, MainViewHandler.MainViewInteraction {
 
     private static final String MAP_FRAGMENT_TAG = "map_fragment_tag";
 
@@ -60,7 +61,7 @@ public class MapListFragment extends Fragment
         initializeMap();
 
         Binding.setViewmodel(ViewModel);
-        Binding.setHandler(new MainViewHandler(getActivity()));
+        Binding.setHandler(new MainViewHandler(getActivity(), this));
 
         return Binding.getRoot();
     }
@@ -124,6 +125,7 @@ public class MapListFragment extends Fragment
 
         TaskItem bob = new TaskItem();
         bob.setName("Bob");
+        bob.setLocation(new TaskLocation());
         fakeData.add(bob);
 
         Binding.taskList.setAdapter(new TasksAdapter(getActivity(), fakeData));
@@ -135,5 +137,32 @@ public class MapListFragment extends Fragment
         Map = googleMap;
 
 
+    }
+
+    @Override
+    public void showCompleted() {
+        List<TaskItem> fakeData = new ArrayList<>();
+
+        TaskItem bob = new TaskItem();
+        bob.setName("Bob");
+        bob.setCategory("Not It");
+        bob.setLocation(null);
+        bob.setPriority(TaskItem.TaskPriority.LOW);
+        bob.complete(true);
+        fakeData.add(bob);
+
+        Binding.taskList.swapAdapter(new TasksAdapter(getActivity(), fakeData), true);
+    }
+
+    @Override
+    public void showPending() {
+        List<TaskItem> fakeData = new ArrayList<>();
+
+        TaskItem bob = new TaskItem();
+        bob.setName("Bob");
+        bob.setLocation(new TaskLocation());
+        fakeData.add(bob);
+
+        Binding.taskList.swapAdapter(new TasksAdapter(getActivity(), fakeData), true);
     }
 }

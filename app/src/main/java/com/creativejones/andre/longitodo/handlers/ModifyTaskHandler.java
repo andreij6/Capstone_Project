@@ -4,17 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
+import com.creativejones.andre.longitodo.databinding.FragmentEditTaskBinding;
 import com.creativejones.andre.longitodo.viewmodels.TaskItemVM;
 
 public class ModifyTaskHandler extends BaseHandler {
 
     TaskItemVM ViewModel;
     ModifyTaskListener Listener;
+    FragmentEditTaskBinding Binding;
 
-    public ModifyTaskHandler(Context context, TaskItemVM viewModel) {
+    public ModifyTaskHandler(Context context, TaskItemVM viewModel, FragmentEditTaskBinding binding) {
         super(context);
         ViewModel = viewModel;
         Listener = (ModifyTaskListener)context;
+        Binding = binding;
     }
 
     public void markAsComplete(View view){
@@ -35,7 +38,18 @@ public class ModifyTaskHandler extends BaseHandler {
         Listener.onAddLocationClicked(ViewModel);
     }
 
+    public void onClickSaveTask(View view){
+        makeChanges();
+        Listener.onSaveTask(ViewModel);
+    }
+
+    public void makeChanges() {
+        ViewModel.setName(Binding.editTaskName.getText().toString());
+    }
+
     public interface ModifyTaskListener {
-        void onAddLocationClicked(TaskItemVM viewModel);
+        void onAddLocationClicked(TaskItemVM model);
+
+        void onSaveTask(TaskItemVM model);
     }
 }

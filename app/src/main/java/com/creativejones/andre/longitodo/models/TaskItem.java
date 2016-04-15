@@ -20,6 +20,7 @@ public class TaskItem {
 
     public TaskItemVM toViewModel(Context context) {
         TaskItemVM viewModel = TaskItemVM.newInstance(this);
+        viewModel.setItem(this);
         viewModel.setContext(context);
         return viewModel;
     }
@@ -64,6 +65,19 @@ public class TaskItem {
     public TaskLocation getLocation() {
         return Location;
     }
+
+    public void setCategory(String category) {
+        Category = category;
+    }
+
+    public void setLocation(TaskLocation location) {
+        Location = location;
+    }
+
+    public void setPriority(int priority) {
+        _Priority = priority;
+    }
+
     //endregion
 
     public static class TaskPriority {
